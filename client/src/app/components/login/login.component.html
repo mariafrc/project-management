@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-center align-items-start" [ngStyle]="{'min-height': '100vh'}">
+	<mat-card [ngStyle]="{width: '250px', 'border-radius':'10px', 'margin-top': '100px'}">
+	  <mat-card-header class="d-block">
+	    <mat-card-title align="center">Authentification</mat-card-title>
+	  </mat-card-header>
+	 
+	  <mat-card-content>
+	  	<form #f="ngForm">
+		    <mat-form-field class="d-block">
+		    	<input matInput placeholder="Nom" name="username" required ngModel>
+		  	</mat-form-field>
+		  	<mat-form-field class="d-block">
+		    	<input matInput type="password" placeholder="Mots de passe" name="password" required ngModel>
+		  	</mat-form-field>
+		  	<a routerLink="/register">Créer un compte</a>
+		  	<button mat-raised-button class="mt-3" color="primary" (click)="onLogin(f.value)" [ngStyle]="{'width': '100%'}" [disabled]="f.invalid">S'authentifier</button>
+
+				<p align="center" *ngIf="error$ | async" class="mt-2"> {{ error$ | async }}</p>
+	  	</form>
+	  </mat-card-content>
+	</mat-card>
+</div>
