@@ -1,6 +1,6 @@
-import {IsString, IsNotEmpty, IsIn, IsOptional} from 'class-validator'
+import {IsString, IsNotEmpty } from 'class-validator'
 
-export class UserDto{
+export class AddUserDto{
 	@IsString()
 	@IsNotEmpty()
 	username: string
@@ -8,4 +8,20 @@ export class UserDto{
 	@IsString()
 	@IsNotEmpty()
 	password: string
+}
+
+export class ChangeNameDto{
+	@IsString()
+	@IsNotEmpty()
+	username: string
+}
+
+export class ChangePasswordDto{
+	@IsString()
+	@IsNotEmpty()
+	lastPassword: string
+
+	@IsString()
+	@IsNotEmpty()
+	newPassword: string
 }

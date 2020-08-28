@@ -9,11 +9,7 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true,
-    "paths": {
-      "@module/*": "server/module/*",
-      "@guard/*": "server/guard/*"
-    }
+    "incremental": true
   },
   "exclude": ["node_modules", "dist"]
 }
