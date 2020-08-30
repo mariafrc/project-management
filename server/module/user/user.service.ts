@@ -9,17 +9,13 @@ import { AddUserDto } from './dto/user.dto';
 export class UserService {
 	constructor(@InjectRepository(User) private userRepository: Repository<User>){}
 
-	// findOne(username: string): Promise<User | null>{
-	// 	return this.userModel.findOne({username}).exec()
-	// }
+	findOne(userId: number): Promise<User | null>{
+		return this.userRepository.findOne(userId);
+	}
 
-	// findOneById(id: string): Promise<User | null>{
-	// 	return this.userModel.findOne({_id: id}).exec()
-	// }
-
-	// findAll(): Promise<User[]>{
-	// 	return this.userModel.find({role: 'user'}).exec()
-	// }
+	findByName(username: string): Promise<User | null>{
+		return this.userRepository.findOne({username});
+	}
 
 	createUser(userData: AddUserDto): Promise<User>{
 		const user = this.userRepository.create({
