@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Project } from 'server/entity/project.entity';
 import { UpsertProjectDto } from './project.dto';
 import { User } from 'server/entity/user.entity';
+import { Task } from '~entity/task.entity';
 
 @Injectable()
 export class ProjectService {
@@ -13,6 +14,16 @@ export class ProjectService {
         @InjectRepository(User)
         private userRepository: Repository<User>
     ){}
+
+    async findTasks(projectId: number): Promise<Task[]>{
+        const project = await this.projectRepository.findOne(projectId);
+        return project.tasks;
+    }
+
+    async findOneTask(projectId: number, taskId: number): Promise<Task>{
+        const project = await this.projectRepository.findOne(projectId);
+        return project.tasks.find(t => t.id === taskId);
+    }
 
     async addProject(projectData: UpsertProjectDto): Promise<Project>{
         const user = await this.userRepository.findOne(projectData.user);

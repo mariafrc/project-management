@@ -1,4 +1,4 @@
-import { Controller, Body, Post, Patch, Param, ParseIntPipe, Delete } from '@nestjs/common';
+import { Controller, Body, Post, Patch, Param, ParseIntPipe, Delete, Get } from '@nestjs/common';
 import { UpsertProjectDto, ChangeTitleDto } from './project.dto';
 import { ProjectService } from './project.service';
 import { ApiTags } from '@nestjs/swagger';
@@ -21,5 +21,15 @@ export class ProjectController {
     @Delete(':id')
     deleteProject(@Param('id', ParseIntPipe) id: number){
         return this.projectService.deleteProject(id);
+    }
+
+    @Get(':id/tasks')
+    getTasks(@Param('id', ParseIntPipe) id: number){
+        return this.projectService.findTasks(id);
+    }
+
+    @Get(':id/tasks/:taskId')
+    getOneTask(@Param('id', ParseIntPipe) id: number, @Param('taskId', ParseIntPipe) taskId: number){
+        return this.projectService.findOneTask(id, taskId);
     }
 }
