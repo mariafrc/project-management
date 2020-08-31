@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'server/entity/user.entity';
 import { Repository } from 'typeorm';
 import { AddUserDto } from './dto/user.dto';
+import { Project } from '~entity/project.entity';
 
 @Injectable()
 export class UserService {
@@ -16,6 +17,16 @@ export class UserService {
 	findByName(username: string): Promise<User | null>{
 		return this.userRepository.findOne({username});
 	}
+
+	async findProjects(userId: number): Promise<Project[]>{
+        const user = await this.userRepository.findOne(userId, {relations: ['projects']});
+        return user.projects;
+    }
+
+    async findOneProject(userId: number, projectId: number): Promise<Project>{
+        const user = await this.userRepository.findOne(userId, {relations: ['projects']});
+        return user.projects.find(p => p.id === projectId);
+    }
 
 	createUser(userData: AddUserDto): Promise<User>{
 		const user = this.userRepository.create({

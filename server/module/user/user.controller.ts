@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Patch, Param, Delete, ParseIntPipe, BadRequestException } from '@nestjs/common';
+import { Controller, Post, Body, Patch, Param, Delete, ParseIntPipe, BadRequestException, Get } from '@nestjs/common';
 import { AddUserDto, ChangeNameDto, ChangePasswordDto } from './dto/user.dto';
 import { UserService } from './user.service';
 import { ApiTags } from '@nestjs/swagger';
@@ -29,5 +29,15 @@ export class UserController {
     @Delete(':id')
     deleteUser(@Param('id', ParseIntPipe) id: number){
         return this.userService.deleteUser(id);
+    }
+
+    @Get(':id/projects')
+    getProjects(@Param('id', ParseIntPipe) id: number){
+        return this.userService.findProjects(id);
+    }
+
+    @Get(':id/projects/:projectId')
+    getOneProject(@Param('id', ParseIntPipe) id: number, @Param('projectId', ParseIntPipe) projectId: number){
+        return this.userService.findOneProject(id, projectId);
     }
 }
