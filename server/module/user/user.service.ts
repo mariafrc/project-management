@@ -31,6 +31,7 @@ export class UserService {
 	createUser(userData: AddUserDto): Promise<User>{
 		const user = this.userRepository.create({
 			...userData,
+			id: null,
 			password: bcrypt.hashSync(userData.password, 14),
 		})
 		return this.userRepository.save(user);

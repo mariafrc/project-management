@@ -18,6 +18,7 @@ export class TaskService {
         const project = await this.projectRepository.findOne(taskData.project);
         const task = this.taskRepository.create({
             ...taskData,
+            id: null,
             status: 'waiting',
             project
         })

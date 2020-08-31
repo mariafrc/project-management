@@ -29,6 +29,7 @@ export class ProjectService {
         const user = await this.userRepository.findOne(projectData.user);
         const project = this.projectRepository.create({
             ...projectData,
+            id: null,
             user
         })
         return this.projectRepository.save(project);
