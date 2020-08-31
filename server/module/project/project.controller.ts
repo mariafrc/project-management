@@ -1,10 +1,11 @@
-import { Controller, Body, Post, Patch, Param, ParseIntPipe, Delete, Get } from '@nestjs/common';
+import { Controller, Body, Post, Patch, Param, ParseIntPipe, Delete, Get, UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
 import { UpsertProjectDto, ChangeTitleDto } from './project.dto';
 import { ProjectService } from './project.service';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('api/projects')
 @ApiTags('projects')
+@UseInterceptors(ClassSerializerInterceptor)
 export class ProjectController {
     constructor(private projectService: ProjectService){}
 

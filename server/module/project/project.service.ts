@@ -16,7 +16,7 @@ export class ProjectService {
     ){}
 
     async findTasks(projectId: number): Promise<Task[]>{
-        const project = await this.projectRepository.findOne(projectId);
+        const project = await this.projectRepository.findOne(projectId, {relations: ['tasks']});
         return project.tasks;
     }
 

@@ -1,16 +1,17 @@
-import { Controller, Post, Body, Patch, Param, Delete, ParseIntPipe, BadRequestException, Get } from '@nestjs/common';
+import { Controller, Post, Body, Patch, Param, Delete, ParseIntPipe, BadRequestException, Get, UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
 import { AddUserDto, ChangeNameDto, ChangePasswordDto } from './dto/user.dto';
 import { UserService } from './user.service';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('api/users')
 @ApiTags('users')
+@UseInterceptors(ClassSerializerInterceptor)
 export class UserController {
     constructor(private userService: UserService){}
     
     @Post()
     addUser(@Body() addUserDto: AddUserDto){
-        this.userService.createUser(addUserDto);
+        return this.userService.createUser(addUserDto);
     }
 
     @Patch(':id/change-name')

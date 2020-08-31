@@ -1,10 +1,11 @@
-import { Controller, Post, Body, Put, Param, ParseIntPipe, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Put, Param, ParseIntPipe, Delete, UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { AddTaskDto, UpdateTaskDto } from './task.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('api/tasks')
 @ApiTags('tasks')
+@UseInterceptors(ClassSerializerInterceptor)
 export class TaskController {
     constructor(private taskService: TaskService){}
 
