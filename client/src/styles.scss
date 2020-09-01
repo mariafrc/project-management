@@ -1,7 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import 'assets/icon/css/material-icons.css';
-@import 'bootstrap/dist/css/bootstrap-grid.min.css';
+@import 'primeicons/primeicons.css';
+@import 'primeng/resources/themes/bootstrap4-light-blue/theme.css';
+@import 'primeng/resources/primeng.min.css';
+@import 'primeflex/primeflex.min.css';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+a {
+	text-decoration: none;
+	color: var(--primary-color);
+	&:hover{
+		text-decoration: underline;
+	}
+}
+
+//custom primeng
+.p-card-footer{padding-top: 0px!important;}
+.p-card-content{padding-top: 0px!important;}

@@ -12,6 +12,13 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "es2020",
+    "paths": {
+      "~modules/*": ["src/app/modules/*"],
+      "~components/*": ["src/app/components/*"],
+      "~store/*": ["src/app/store/*"],
+      "~services/*": ["src/app/providers/services/*"],
+      "~guards/*": ["src/app/providers/guards/*"],
+    },
     "lib": [
       "es2018",
       "dom"

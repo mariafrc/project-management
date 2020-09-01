@@ -17,7 +17,6 @@ module.exports = {
     "@typescript-eslint/no-empty-function": ["error", { "allow": ["constructors"] }],
     "@typescript-eslint/no-inferrable-types": "off",
     "@typescript-eslint/brace-style": "warn",
-    "@typescript-eslint/no-empty-function": "warn",
     "@typescript-eslint/semi": "error"
   }
 }

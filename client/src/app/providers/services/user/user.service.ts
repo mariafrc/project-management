@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import * as jwtJsDecode from 'jwt-js-decode';
+import { jwtDecode } from 'jwt-js-decode';
 import {Observable} from 'rxjs';
 
 interface LoadResponse{
+  id: string
   username: string
-  role: string
   isAuth: boolean
 }
 
@@ -18,7 +18,7 @@ export class UserService {
       return false;
   
     //token expiration check (this code was stolen)
-    const decoded = jwtJsDecode.jwtDecode(localStorage.getItem('token')).payload;
+    const decoded = jwtDecode(localStorage.getItem('token')).payload;
     if(!decoded.exp)
       return false;
 
@@ -32,18 +32,18 @@ export class UserService {
     return true;
   }
 
-  getUserdata(): {username: string, role: string, isAuth: boolean}{
+  getUserdata(): LoadResponse{
     if(!this.isAuth()){
       return {
+        id: null,
         username: null,
-        role: null,
         isAuth: false
       };
     }
-    const decoded = jwtJsDecode.jwtDecode(localStorage.getItem('token')).payload;
+    const decoded = jwtDecode(localStorage.getItem('token')).payload;
     return {
+      id: decoded.id,
       username: decoded.username,
-      role: decoded.role,
       isAuth: true
     };
   }

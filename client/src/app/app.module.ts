@@ -7,36 +7,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
-
-//modules
-import { MaterialModule } from './modules/material/material.module';
-import { UserModule } from './modules/user/user.module';
+import { providers } from './providers';
 
 //providers
-import { providers } from './providers';
+
+//modules
+import { PrimengModule } from '~modules/primeng/primeng.module';
 
 //components
 import { AppComponent } from './app.component';
-import { DialogComponent } from './components/dialog/dialog.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { RedirectComponent } from './components/redirect/redirect.component';
 
 //store
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { EffectsModule } from '@ngrx/effects';
-import { ProductEffects } from './store/product/product.effects';
-import { UserEffects } from './store/user/user.effects';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DialogComponent,
-    LoginComponent,
-    RegisterComponent,
-    RedirectComponent
   ],
   imports: [
     BrowserModule,
@@ -44,8 +32,7 @@ import { UserEffects } from './store/user/user.effects';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    MaterialModule,
-    UserModule,
+    PrimengModule,
     CommonModule,
     StoreModule.forRoot(reducers, {
       metaReducers, 
@@ -56,13 +43,10 @@ import { UserEffects } from './store/user/user.effects';
       }
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([]),
-    EffectsModule.forFeature([UserEffects, ProductEffects]),
   ],
   providers: [
     ...providers
   ],
-  entryComponents: [DialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,6 +5,7 @@ const baseURL="http://localhost:3000/api";
 
 @Injectable()
 export class AppHttpInterceptor implements HttpInterceptor{
+	/* eslint @typescript-eslint/no-explicit-any: "off" */
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
 		req = req.clone({
 			url: baseURL + req.url,
