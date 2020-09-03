@@ -44,3 +44,8 @@ export const DELETE_PROJECT_SUCCESS = createAction(
   '[Project API] Delete Project Success',
   props<{id: number}>()
 );
+
+export const TASK_PAGE_SELECT_PROJECT = createAction(
+  '[Task Page] Select Project',
+  props<{id: number}>()
+);

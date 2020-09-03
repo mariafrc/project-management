@@ -5,11 +5,13 @@ import {Project} from './project.model';
 export const projectFeatureKey = 'project';
 
 export interface State {
-	list: Project[]
+	list: Project[],
+  selected: Project
 }
 
 export const initialState: State = {
-	list: []
+	list: [],
+  selected: null
 };
 
 
@@ -27,6 +29,11 @@ export const reducer = createReducer(
   	...state,
   	list: state.list.filter(p => p.id !== action.id)
   })),
+
+  on(ProjectActions.TASK_PAGE_SELECT_PROJECT, (state, action) => ({
+    ...state,
+    selected: state.list.find(p => p.id === action.id)
+  }))
 
 );
 

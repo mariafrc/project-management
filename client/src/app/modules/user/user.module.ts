@@ -3,12 +3,15 @@ import { CommonModule } from '@angular/common';
 import { UserComponent } from './user.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
 import {PrimengModule} from '~modules/primeng/primeng.module';
 import { EffectsModule } from '@ngrx/effects';
-import { ProjectEffects } from '../../store/project/project.effects';
 import { StoreModule } from '@ngrx/store';
+
+import { ProjectEffects } from '../../store/project/project.effects';
+import { TaskEffects } from '../../store/task/task.effects';
 import * as fromProject from '~store/project/project.reducer';
+import * as fromTask from '~store/task/task.reducer';
+
 import { ProjectComponent } from './project/project.component';
 import { ProjectFormComponent } from './project-form/project-form.component';
 
@@ -33,7 +36,8 @@ const routes: Routes = [
     PrimengModule,
     FormsModule,
     StoreModule.forFeature(fromProject.projectFeatureKey, fromProject.reducer),
-    EffectsModule.forFeature([ProjectEffects])
+    StoreModule.forFeature(fromTask.taskFeatureKey, fromTask.reducer),
+    EffectsModule.forFeature([ProjectEffects, TaskEffects])
   ]
 })
 export class UserModule { }
