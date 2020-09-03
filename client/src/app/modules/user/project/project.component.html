@@ -8,11 +8,13 @@
 		<div *ngIf="!(projects$ | async).length">
 			<h1 align="center">Aucun Projet Trouvé</h1>
 		</div>
-		<div class="project-item" *ngFor="let project of (projects$ | async)">
-			<h3 class="title">{{ project.title }}</h3>
-			<div>
-				<button class="p-button-secondary" pButton icon="pi pi-pencil" type="button" (click)="onEdit(project)"></button>
-				<button class="p-ml-1 p-button-danger" pButton icon="pi pi-times" type="button" (click)="onDelete(project.id)"></button>
+		<div class="p-grid p-jc-around">
+			<div class="project-item p-col-12 p-md-5" *ngFor="let project of (projects$ | async)">
+				<h3 class="title" [routerLink]="project.id + '/tasks'">{{ project.title }}</h3>
+				<div class="p-d-flex p-jc-between p-ai-center p-mt-3">
+					<button pButton icon="pi pi-pencil" type="button" (click)="onEdit(project)"></button>
+					<button class="p-ml-1 p-button-danger" pButton icon="pi pi-trash" type="button" (click)="onDelete(project.id)"></button>
+				</div>
 			</div>
 		</div>
 	</p-card>
