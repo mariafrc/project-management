@@ -42,7 +42,7 @@ export class UserService {
     }
     const decoded = jwtDecode(localStorage.getItem('token')).payload;
     return {
-      id: decoded.id,
+      id: decoded.sub,
       username: decoded.username,
       isAuth: true
     };

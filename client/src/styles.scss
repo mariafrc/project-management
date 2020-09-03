@@ -1,9 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'primeicons/primeicons.css';
-@import 'primeng/resources/themes/bootstrap4-light-blue/theme.css';
+@import 'primeng/resources/themes/luna-green/theme.css';
 @import 'primeng/resources/primeng.min.css';
 @import 'primeflex/primeflex.min.css';
+@import 'assets/css/container.css';
 
+* { overflow: auto; }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 a {
@@ -17,3 +19,4 @@ a {
 //custom primeng
 .p-card-footer{padding-top: 0px!important;}
 .p-card-content{padding-top: 0px!important;}
+.p-dialog-header{padding: 5px!important;}

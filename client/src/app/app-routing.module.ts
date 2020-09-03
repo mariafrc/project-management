@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-	
+	{path: "app", loadChildren: "~modules/user/user.module#UserModule"}
 ];
 
 @NgModule({

@@ -1,0 +1,19 @@
+<div class="container p-mt-3">
+	<p-card>
+		<div class="card-header">
+			<h2 class="title">Projets</h2>
+			<p-button icon="pi pi-plus-circle" label="Ajouter" iconPos="left" (click)="onAdd()"></p-button>
+		</div>
+		<hr>
+		<div *ngIf="!(projects$ | async).length">
+			<h1 align="center">Aucun Projet Trouvé</h1>
+		</div>
+		<div class="project-item" *ngFor="let project of (projects$ | async)">
+			<h3 class="title">{{ project.title }}</h3>
+			<div>
+				<button class="p-button-secondary" pButton icon="pi pi-pencil" type="button" (click)="onEdit(project)"></button>
+				<button class="p-ml-1 p-button-danger" pButton icon="pi pi-times" type="button" (click)="onDelete(project.id)"></button>
+			</div>
+		</div>
+	</p-card>
+</div>
