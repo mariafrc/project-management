@@ -49,3 +49,8 @@ export const TASK_PAGE_SELECT_PROJECT = createAction(
   '[Task Page] Select Project',
   props<{id: number}>()
 );
+
+export const SELECT_PROJECT_SUCCESS = createAction(
+  '[Task API] Select Project Success',
+  props<{project: Project}>()
+);

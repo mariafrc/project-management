@@ -1,6 +1,8 @@
 export interface Task {
 	id: number;
 	title: string;
-	status: 'waiting' | 'processing' | 'finished';
+	status: TaskStatus;
 	projectId: number;
 }
+
+export type TaskStatus = 'waiting' | 'processing' | 'finished'

@@ -30,9 +30,9 @@ export const reducer = createReducer(
   	list: state.list.filter(p => p.id !== action.id)
   })),
 
-  on(ProjectActions.TASK_PAGE_SELECT_PROJECT, (state, action) => ({
+  on(ProjectActions.SELECT_PROJECT_SUCCESS, (state, action) => ({
     ...state,
-    selected: state.list.find(p => p.id === action.id)
+    selected: action.project
   }))
 
 );

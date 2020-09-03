@@ -26,6 +26,20 @@ export class ProjectEffects {
     );
   });
 
+  selectProject$ = createEffect(() => {
+    return this.actions$.pipe( 
+
+      ofType(ProjectActions.TASK_PAGE_SELECT_PROJECT),
+      concatMap(({id}) => {
+        return this.http.get<Project>(`/projects/${id}`)
+          .pipe(
+            map(project => ProjectActions.SELECT_PROJECT_SUCCESS({ project })),
+            catchError(error => of(ProjectActions.ACTION_FAIL({error})))
+          )
+      })
+    );
+  });
+
   addProject$ = createEffect(() => {
     return this.actions$.pipe( 
 

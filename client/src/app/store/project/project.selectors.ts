@@ -9,3 +9,8 @@ export const selectProjects = createSelector(
   selectProjectState,
   (state) => state.list
 );
+
+export const selectProject = createSelector(
+	selectProjectState,
+	(state) => state.selected
+)
