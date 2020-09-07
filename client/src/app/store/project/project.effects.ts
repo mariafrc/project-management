@@ -16,8 +16,8 @@ export class ProjectEffects {
 
       ofType(ProjectActions.PROJECT_PAGE_LOAD_PROJECTS),
       concatMap(() => {
-        const { id } = this.userService.getUserdata();
-        return this.http.get<Project[]>(`/projects?userId=${id}`)
+        const { sub } = this.userService.getUserdata();
+        return this.http.get<Project[]>(`/projects?userId=${sub}`)
           .pipe(
             map(projects => ProjectActions.LOAD_PROJECT_SUCCESS({ projects })),
             catchError(error => of(ProjectActions.ACTION_FAIL({error})))
@@ -45,8 +45,8 @@ export class ProjectEffects {
 
       ofType(ProjectActions.PROJECT_MODAL_ADD_PROJECT),
       concatMap(({title}) => {
-        const { id } = this.userService.getUserdata();
-        return this.http.post<Project>('/projects', {title, userId: id})
+        const { sub } = this.userService.getUserdata();
+        return this.http.post<Project>('/projects', {title, userId: sub})
           .pipe(
             map(project => ProjectActions.ADD_PROJECT_SUCCESS({ project })),
             catchError(error => of(ProjectActions.ACTION_FAIL({error})))

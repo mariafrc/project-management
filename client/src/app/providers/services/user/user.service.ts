@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-js-decode';
 import {Observable} from 'rxjs';
 
-interface LoadResponse{
-  id: string
-  username: string
-  isAuth: boolean
+export interface UserData{
+  sub: number;
+  username: string;
 }
 
 @Injectable({
@@ -16,14 +15,14 @@ export class UserService {
   isAuth(): boolean{
     if(!localStorage.getItem('token'))
       return false;
-  
-    //token expiration check (this code was stolen)
-    const decoded = jwtDecode(localStorage.getItem('token')).payload;
-    if(!decoded.exp)
+
+    const jwtPayload = jwtDecode(localStorage.getItem('token')).payload;
+    //token expiration check
+    if(!jwtPayload.exp)
       return false;
 
     const date = new Date(0);
-    const timeExp = date.setUTCSeconds(decoded.exp);
+    const timeExp = date.setUTCSeconds(jwtPayload.exp);
     if(timeExp.valueOf() < new Date().valueOf()){
       localStorage.removeItem('token');
       return false;
@@ -32,24 +31,26 @@ export class UserService {
     return true;
   }
 
-  getUserdata(): LoadResponse{
+  getUserdata(): UserData{
     if(!this.isAuth()){
       return {
-        id: null,
-        username: null,
-        isAuth: false
+        sub: 0,
+        username: null
       };
     }
-    const decoded = jwtDecode(localStorage.getItem('token')).payload;
+
+    const jwtPayload = jwtDecode(localStorage.getItem('token')).payload;
     return {
-      id: decoded.sub,
-      username: decoded.username,
-      isAuth: true
+      sub: jwtPayload.sub,
+      username: jwtPayload.username
     };
   }
 
-  loadUser(): Observable<LoadResponse>{
+  loadUser(): Observable<UserData>{
     return new Observable((obs)=>{
+      if(!this.getUserdata().sub){
+        obs.error()
+      }
       obs.next(this.getUserdata());
       obs.complete();
     });
