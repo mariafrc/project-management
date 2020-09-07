@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import {PrimengModule} from '~modules/primeng/primeng.module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import {AuthGuard} from '~guards/auth.guard';
 
 import {AccordionModule} from 'primeng/accordion';
 import {DropdownModule} from 'primeng/dropdown';
@@ -26,6 +27,7 @@ const routes: Routes = [
 	{
 		path: '',
 		component: UserComponent,
+    canActivate: [AuthGuard],
 		children: [
       {path: '', redirectTo: 'projects', pathMatch: 'full'},
       {path: 'projects', component: ProjectComponent},
