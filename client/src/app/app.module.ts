@@ -14,7 +14,7 @@ import { PrimengModule } from '~modules/primeng/primeng.module';
 
 //components
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './components/register/register.component';
+// import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 
 //store
@@ -28,7 +28,7 @@ import { AuthEffects } from './store/auth/auth.effects';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    // RegisterComponent
   ],
   imports: [
     BrowserModule,
