@@ -7,8 +7,5 @@ module.exports = {
     database: 'nestjs_project_management',
     entities: ['dist/**/*.entity{.js, .ts}'],
     synchronize: true,
-    autoLoadEntities: true,
-    cli: {
-        entitiesDir: "server/entity"
-    }
-  }
+    autoLoadEntities: true
+}

@@ -1,19 +1,19 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import {config} from 'dotenv';
-import { UserModule } from './module/user/user.module';
-import { ProjectModule } from './module/project/project.module';
-import { TaskModule } from './module/task/task.module';
-import { AuthModule } from './module/auth/auth.module';
-config()
+import { ConfigModule } from '@nestjs/config';
 
+import { UserModule } from './user/user.module';
+import { ProjectModule } from './project/project.module';
+import { TaskModule } from './task/task.module';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
+    ConfigModule.forRoot(),
     UserModule,
     ProjectModule,
     TaskModule,
-    AuthModule
+    AuthModule,
   ],
   controllers: [],
   providers: [],

@@ -10,11 +10,6 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
-    "paths": {
-      "~module/*": ["src/module/*"],
-      "~entity/*": ["src/entity/*"],
-      "~guard/*": ["src/guard/*"]
-    }
   },
   "exclude": ["node_modules", "dist", "client"]
 }
