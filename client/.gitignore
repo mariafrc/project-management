@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+.angular
 # Only exists if Bazel was run
 /bazel-out
 
@@ -47,3 +48,5 @@ Thumbs.db
 
 # fake data
 /fake
+
+package-lock.json

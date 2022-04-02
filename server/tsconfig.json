@@ -11,9 +11,9 @@
     "baseUrl": "./",
     "incremental": true,
     "paths": {
-      "~module/*": ["server/module/*"],
-      "~entity/*": ["server/entity/*"],
-      "~guard/*": ["server/guard/*"]
+      "~module/*": ["src/module/*"],
+      "~entity/*": ["src/entity/*"],
+      "~guard/*": ["src/guard/*"]
     }
   },
   "exclude": ["node_modules", "dist", "client"]
