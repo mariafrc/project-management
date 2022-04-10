@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { providers } from './providers';
 
@@ -14,21 +13,26 @@ import { PrimengModule } from '~modules/primeng/primeng.module';
 
 //components
 import { AppComponent } from './app.component';
-// import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component';
-
-//store
-import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { EffectsModule } from '@ngrx/effects';
-import { AuthEffects } from './store/auth/auth.effects';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { RegisterComponent } from './pages/auth/register/register.component';
+import { ProjectComponent } from './pages/app-content/project/project.component';
+import { ProjectFormComponent } from './pages/app-content/project-form/project-form.component';
+import { TaskFormComponent } from './pages/app-content/task-form/task-form.component';
+import { TaskPreviewComponent } from './pages/app-content/task-preview/task-preview.component';
+import { TaskStatusPipe } from './pipes/task-status.pipe';
+import { AppContentWrapperComponent } from './pages/app-content/app-content-wrapper/app-content-wrapper.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    // RegisterComponent
+    RegisterComponent,
+    ProjectComponent,
+    ProjectFormComponent,
+    TaskFormComponent,
+    TaskPreviewComponent,
+    AppContentWrapperComponent,
+    TaskStatusPipe,
   ],
   imports: [
     BrowserModule,
@@ -38,20 +42,8 @@ import { AuthEffects } from './store/auth/auth.effects';
     FormsModule,
     PrimengModule,
     CommonModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers, 
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true,
-        strictActionTypeUniqueness: true
-      }
-    }),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([AuthEffects])
   ],
-  providers: [
-    ...providers
-  ],
-  bootstrap: [AppComponent]
+  providers: [...providers],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

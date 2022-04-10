@@ -1,0 +1,41 @@
+<div class="content">
+  <p-card class="login-card">
+    <h2 class="p-m-0">Login</h2>
+    <form #f="ngForm" class="p-mt-3 p-fluid p-formgrid p-grid">
+      <p-message
+        class="p-col-12 p-mb-2"
+        *ngIf="error$ | async"
+        severity="warn"
+        [text]="error$ | async"
+      ></p-message>
+      <div class="p-field p-col-12 p-mb-2">
+        <input
+          type="text"
+          placeholder="Nom d'utilisateur"
+          name="username"
+          ngModel
+          required
+          pInputText
+        />
+      </div>
+
+      <div class="p-field p-col-12 p-mb-2">
+        <input
+          type="password"
+          placeholder="Mots de passe"
+          name="password"
+          ngModel
+          required
+          pInputText
+        />
+      </div>
+      <button
+        pButton
+        label="S'authentifier"
+        [disabled]="f.invalid"
+        (click)="onSubmit(f.value)"
+      ></button>
+    </form>
+    <a class="p-text-right" routerLink="/register">Create an account</a>
+  </p-card>
+</div>

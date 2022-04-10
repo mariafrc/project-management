@@ -8,6 +8,7 @@ import {
   UseInterceptors,
   ClassSerializerInterceptor,
   UseGuards,
+  Get,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
@@ -22,6 +23,11 @@ import { ChangePasswordInput } from './dto/ChangePasswordInput';
 @UseInterceptors(ClassSerializerInterceptor)
 export class UserController {
   constructor(private userService: UserService) {}
+
+  @Get(':id')
+  getOne(@Param('id') id: string) {
+    return this.userService.findOne(id);
+  }
 
   @Patch(':id/change-name')
   changeName(
