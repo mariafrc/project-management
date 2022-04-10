@@ -1,27 +1,28 @@
-<div class="p-fluid p-formgrid p-grid">
-  <div class="p-field p-col-12">
-    <input
-      type="text"
-      placeholder="Titre"
-      pInputText
-      [(ngModel)]="taskForm.title"
-      maxlength="200"
-    />
-  </div>
+<div>
+  <p-selectButton
+    *ngIf="action === 'edit'"
+    styleClass="w-full flex justify-content-around mb-2"
+    [options]="status"
+    [(ngModel)]="taskForm.status"
+    optionLabel="label"
+    optionValue="value"
+  ></p-selectButton>
 
-  <div class="p-field p-col-12" *ngIf="action === 'edit'">
-    <p-selectButton
-      [options]="status"
-      [(ngModel)]="taskForm.status"
-      optionLabel="label"
-      optionValue="value"
-    ></p-selectButton>
-  </div>
+  <input
+    class="w-full mb-2"
+    type="text"
+    placeholder="Title"
+    pInputText
+    [(ngModel)]="taskForm.title"
+    maxlength="200"
+  />
 
-  <button
-    pButton
-    [label]="action === 'add' ? 'Ajouter' : 'Modifier'"
-    (click)="onSubmit()"
-    [disabled]="!taskForm.title"
-  ></button>
+  <div class="text-right">
+    <button
+      pButton
+      [label]="action === 'add' ? 'Add' : 'Update'"
+      (click)="onSubmit()"
+      [disabled]="!taskForm.title"
+    ></button>
+  </div>
 </div>

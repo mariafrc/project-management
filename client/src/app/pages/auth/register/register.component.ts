@@ -14,17 +14,18 @@ import {
 })
 export class RegisterComponent implements OnInit {
   error$: Observable<string>;
-  authStatus$: Observable<boolean>;
+  isLoading$: Observable<boolean>;
+
   constructor(
     private router: Router,
     private userService: UserService,
     private userQuery: UserQuery
   ) {
     this.error$ = this.userQuery.registerError$;
+    this.isLoading$ = this.userQuery.isLoading$;
   }
 
   ngOnInit(): void {
-    debugger;
     if (this.userService.isAuth()) {
       this.router.navigate(['/app']);
     }

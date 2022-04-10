@@ -6,6 +6,7 @@ export interface UserState {
   user: User;
   loginError: string;
   registerError: string;
+  isLoading: boolean;
 }
 
 export function createInitialState(): UserState {
@@ -13,6 +14,7 @@ export function createInitialState(): UserState {
     user: { id: 0, username: '' },
     loginError: '',
     registerError: '',
+    isLoading: false,
   };
 }
 

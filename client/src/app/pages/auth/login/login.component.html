@@ -1,17 +1,21 @@
-<div class="content">
-  <p-card class="login-card">
-    <h2 class="p-m-0">Login</h2>
-    <form #f="ngForm" class="p-mt-3 p-fluid p-formgrid p-grid">
+<div
+  class="bg-primary-reverse min-h-full flex justify-content-center align-items-center overflow-auto"
+>
+  <p-card class="w-25rem">
+    <h2 class="m-0 text-center">Login</h2>
+    <form #f="ngForm" class="mt-3 flex flex-column">
       <p-message
-        class="p-col-12 p-mb-2"
+        class="mb-2 text-center"
         *ngIf="error$ | async"
         severity="warn"
         [text]="error$ | async"
       ></p-message>
-      <div class="p-field p-col-12 p-mb-2">
+
+      <div class="mb-2">
         <input
+          class="w-full"
           type="text"
-          placeholder="Nom d'utilisateur"
+          placeholder="Username"
           name="username"
           ngModel
           required
@@ -19,23 +23,30 @@
         />
       </div>
 
-      <div class="p-field p-col-12 p-mb-2">
+      <div class="mb-2">
         <input
+          class="w-full"
           type="password"
-          placeholder="Mots de passe"
+          placeholder="Password"
           name="password"
           ngModel
           required
           pInputText
         />
       </div>
+
       <button
+        class="mt-1"
         pButton
-        label="S'authentifier"
+        label="Submit"
         [disabled]="f.invalid"
         (click)="onSubmit(f.value)"
+        [loading]="isLoading$ | async"
       ></button>
     </form>
-    <a class="p-text-right" routerLink="/register">Create an account</a>
+
+    <div class="text-right mt-2">
+      <a routerLink="/register">Create an account</a>
+    </div>
   </p-card>
 </div>

@@ -17,6 +17,9 @@ interface AuthResponse {
   access_token: string;
 }
 
+const UNAUTHORIZED_HTTP_ERROR = 401;
+const BADREQUEST_HTTP_ERROR = 400;
+
 @Injectable({
   providedIn: 'root',
 })
@@ -45,11 +48,16 @@ export class UserService {
   }
 
   authenticate(credentials: AuthCredentials) {
+    this.userStore.update({ isLoading: true });
     this.http
       .post<AuthResponse>('/login', credentials)
       .pipe(
-        catchError((error) => {
-          this.userStore.update({ loginError: error });
+        catchError((error: any) => {
+          let errorMessage = 'Unknown error';
+          if (error?.status === UNAUTHORIZED_HTTP_ERROR) {
+            errorMessage = 'Username or password invalid';
+          }
+          this.userStore.update({ loginError: errorMessage, isLoading: false });
           return of(null);
         })
       )
@@ -59,11 +67,19 @@ export class UserService {
   }
 
   register(credentials: AuthCredentials) {
+    this.userStore.update({ isLoading: true });
     this.http
       .post<AuthResponse>('/register', credentials)
       .pipe(
-        catchError((error) => {
-          this.userStore.update({ registerError: error });
+        catchError((error: any) => {
+          let errorMessage = 'Unknown error';
+          if (error?.status === BADREQUEST_HTTP_ERROR) {
+            errorMessage = 'Username already exist';
+          }
+          this.userStore.update({
+            registerError: errorMessage,
+            isLoading: false,
+          });
           return of(null);
         })
       )
@@ -92,6 +108,7 @@ export class UserService {
     this.userStore.update({
       loginError: '',
       registerError: '',
+      isLoading: false,
     });
   }
 }

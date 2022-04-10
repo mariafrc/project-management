@@ -13,4 +13,5 @@ export class UserQuery extends Query<UserState> {
   loginError$ = this.select((state) => state.loginError);
   registerError$ = this.select((state) => state.registerError);
   user$ = this.select((state) => state.user);
+  isLoading$ = this.select((state) => state.isLoading);
 }

@@ -14,9 +14,9 @@ import { Task } from 'src/app/akita-store/task/task.model';
 
 const statusOptions: SelectItem[] = [
   { label: '----------', value: null },
-  { label: 'En attente', value: 'waiting' },
-  { label: 'En cours', value: 'processing' },
-  { label: 'Terminée', value: 'finished' },
+  { label: 'Waiting', value: 'waiting' },
+  { label: 'In progress', value: 'processing' },
+  { label: 'Finished', value: 'finished' },
 ];
 
 @Component({
@@ -74,8 +74,8 @@ export class TaskPreviewComponent implements OnInit, OnDestroy {
 
   onAdd(): void {
     this.dialogService.open(TaskFormComponent, {
-      header: 'Nouvelle tâche',
-      width: '70%',
+      header: 'New task',
+      width: '500px',
       data: {
         action: 'add',
         projectId: this.projectId,
@@ -85,8 +85,8 @@ export class TaskPreviewComponent implements OnInit, OnDestroy {
 
   onEdit(task: Task): void {
     this.dialogService.open(TaskFormComponent, {
-      header: 'Modification',
-      width: '70%',
+      header: 'Update task',
+      width: '500px',
       data: {
         action: 'edit',
         task,

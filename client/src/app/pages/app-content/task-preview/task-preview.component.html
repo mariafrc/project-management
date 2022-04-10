@@ -1,39 +1,44 @@
-<div class="container p-mt-4">
+<div class="container mt-4">
   <p-card>
-    <h1 align="center" class="p-m-0">
-      {{ project ? project.title : "Chargement..." }}
+    <h1 class="text-center m-0">
+      {{ project ? project.title : "Loading project..." }}
     </h1>
   </p-card>
   <button
     pButton
     icon="pi pi-arrow-left"
     iconPos="left"
-    label="retour"
-    class="p-mt-2 p-mb-5"
+    label="Back"
+    class="mt-2 mb-5"
     routerLink="/app/projects"
   ></button>
 
   <div *ngIf="project">
     <p-accordion>
-      <p-accordionTab header="Filtrer">
-        <div class="p-fluid p-formgrid p-grid p-jc-center">
-          <div class="p-field p-col-12 p-md-5">
+      <p-accordionTab header="Filter">
+        <div class="grid">
+          <div class="col-12 md:col-5">
             <input
+              class="w-full"
               type="text"
-              placeholder="Titre"
+              placeholder="Title"
               pInputText
               [(ngModel)]="filter.title"
             />
           </div>
 
-          <div class="p-field p-col-12 p-md-5">
+          <div class="col-12 md:col-5">
             <p-dropdown
+              styleClass="w-full"
               [options]="status"
               [(ngModel)]="filter.status"
             ></p-dropdown>
           </div>
 
-          <div class="p-col-12 p-md-2" *ngIf="filter.title || filter.status">
+          <div
+            class="col-12 md:col-2 text-right"
+            *ngIf="filter.title || filter.status"
+          >
             <button
               pButton
               icon="pi pi-times"
@@ -46,7 +51,7 @@
     </p-accordion>
 
     <p-card>
-      <div align="center">
+      <div class="text-center">
         <button
           pButton
           class="p-button-rounded"
@@ -54,15 +59,21 @@
           (click)="onAdd()"
         ></button>
       </div>
+
       <hr />
 
-      <div class="task-item" *ngFor="let task of tasks">
-        <h3 class="title">{{ task.title }} : {{ task.status | taskstatus }}</h3>
+      <div
+        class="bg-primary-reverse border-round flex justify-content-between align-items-center p-2 mb-2"
+        *ngFor="let task of tasks"
+      >
+        <h3 class="m-0 text-white">
+          {{ task.title }} : {{ task.status | taskstatus }}
+        </h3>
         <div>
           <button
+            class="mr-2"
             pButton
             icon="pi pi-pencil"
-            class="p-mr-1"
             (click)="onEdit(task)"
           ></button>
           <button
@@ -75,7 +86,7 @@
       </div>
 
       <div *ngIf="!tasks.length">
-        <h2 align="center">Aucune Tâche Trouvée</h2>
+        <h2 class="text-center">No task found</h2>
       </div>
     </p-card>
   </div>

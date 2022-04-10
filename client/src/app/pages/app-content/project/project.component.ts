@@ -31,8 +31,8 @@ export class ProjectComponent implements OnInit {
 
   onAdd() {
     this.dialogService.open(ProjectFormComponent, {
-      header: 'Nouveau projet',
-      width: '70%',
+      header: 'New project',
+      width: '500px',
       data: {
         action: 'add',
       },
@@ -41,8 +41,8 @@ export class ProjectComponent implements OnInit {
 
   onEdit(project: Project) {
     this.dialogService.open(ProjectFormComponent, {
-      header: 'Modification',
-      width: '70%',
+      header: 'Update project',
+      width: '500px',
       data: {
         action: 'edit',
         project,
@@ -52,11 +52,11 @@ export class ProjectComponent implements OnInit {
 
   onDelete(id: number) {
     this.confirmation.confirm({
-      message: 'Voulez-vous vraiment executer cet action?',
+      message: 'Do you want to delete this project?',
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
-      acceptLabel: 'Oui',
-      rejectLabel: 'Non',
+      acceptLabel: 'Yes',
+      rejectLabel: 'No',
       accept: () => {
         this.projectService.removeProject(id);
       },
@@ -64,7 +64,16 @@ export class ProjectComponent implements OnInit {
   }
 
   onLogout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    this.confirmation.confirm({
+      message: 'Do you really want to logout?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Yes',
+      rejectLabel: 'No',
+      accept: () => {
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
+      },
+    });
   }
 }

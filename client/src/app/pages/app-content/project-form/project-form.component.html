@@ -1,8 +1,19 @@
-<div class="p-fluid">
-    <div class="p-field">
-      <input type="text" placeholder="Titre" pInputText [(ngModel)]="title" maxlength="20">
-    </div>
-    <div class="p-field" align="right">
-    	<button pButton [label]="config.data.action === 'add' ? 'Ajouter' : 'Modifier'" [disabled]="!title" (click)="onSubmit()"></button>
-    </div>
+<div>
+  <input
+    class="w-full mb-2"
+    type="text"
+    placeholder="Title"
+    pInputText
+    [(ngModel)]="title"
+    maxlength="20"
+  />
+
+  <div class="text-right">
+    <button
+      pButton
+      [label]="config.data.action === 'add' ? 'Add' : 'Update'"
+      [disabled]="!title"
+      (click)="onSubmit()"
+    ></button>
+  </div>
 </div>

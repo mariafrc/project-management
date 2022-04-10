@@ -29,9 +29,9 @@ export class TaskFormComponent implements OnInit {
     private taskService: TaskService
   ) {
     this.status = [
-      { label: 'En attente', value: 'waiting' },
-      { label: 'En cours', value: 'processing' },
-      { label: 'Terminée', value: 'finished' },
+      { label: 'Waiting', value: 'waiting' },
+      { label: 'In progress', value: 'processing' },
+      { label: 'Finished', value: 'finished' },
     ];
   }
 

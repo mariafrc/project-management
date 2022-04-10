@@ -10,6 +10,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { AccordionModule } from 'primeng/accordion';
 
 const primengModules = [
   InputTextModule,
@@ -23,6 +24,7 @@ const primengModules = [
   ConfirmDialogModule,
   DynamicDialogModule,
   SelectButtonModule,
+  AccordionModule,
 ];
 
 @NgModule({

@@ -15,13 +15,15 @@ import { UserQuery } from 'src/app/akita-store/user/user.query';
 })
 export class LoginComponent implements OnInit {
   error$: Observable<string>;
-  authStatus$: Observable<boolean>;
+  isLoading$: Observable<boolean>;
+
   constructor(
     private router: Router,
     private userService: UserService,
     private userQuery: UserQuery
   ) {
     this.error$ = this.userQuery.loginError$;
+    this.isLoading$ = this.userQuery.isLoading$;
   }
 
   ngOnInit(): void {

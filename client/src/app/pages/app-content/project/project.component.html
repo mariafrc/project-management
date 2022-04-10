@@ -1,49 +1,55 @@
-<div class="container p-mt-3">
+<div class="container mt-3">
   <p-card>
-    <div class="card-header">
-      <h2 class="title">Projets</h2>
+    <div class="flex justify-content-between align-items-end">
+      <h2 class="m-0">Project list</h2>
       <div>
         <p-button
+          class="mr-2"
           icon="pi pi-plus-circle"
-          label="Ajouter"
+          label="Add project"
           iconPos="left"
           (click)="onAdd()"
         ></p-button>
         <p-button
-          icon="pi pi-plus-circle"
+          icon="pi pi-sign-out"
           label="Logout"
           iconPos="left"
           (click)="onLogout()"
         ></p-button>
       </div>
     </div>
-    <hr />
+
+    <hr class="mb-5" />
+
     <div *ngIf="!(projects$ | async).length">
-      <h1 align="center">Aucun Projet Trouvé</h1>
+      <h1 align="center">No project found</h1>
     </div>
-    <div class="p-grid p-jc-around">
-      <div
-        class="project-item p-col-12 p-md-5"
-        *ngFor="let project of projects$ | async"
+
+    <div
+      class="flex justify-content-between align-items-center p-2 mb-2 bg-primary-reverse border-round"
+      *ngFor="let project of projects$ | async"
+    >
+      <h4
+        class="text-white underline m-0 cursor-pointer"
+        [routerLink]="project.id + '/tasks'"
       >
-        <h3 class="title" [routerLink]="project.id + '/tasks'">
-          {{ project.title }}
-        </h3>
-        <div class="p-d-flex p-jc-between p-ai-center p-mt-3">
-          <button
-            pButton
-            icon="pi pi-pencil"
-            type="button"
-            (click)="onEdit(project)"
-          ></button>
-          <button
-            class="p-ml-1 p-button-danger"
-            pButton
-            icon="pi pi-trash"
-            type="button"
-            (click)="onDelete(project.id)"
-          ></button>
-        </div>
+        {{ project.title }}
+      </h4>
+      <div>
+        <button
+          class="mr-2"
+          pButton
+          icon="pi pi-pencil"
+          type="button"
+          (click)="onEdit(project)"
+        ></button>
+        <button
+          class="p-ml-1 p-button-danger"
+          pButton
+          icon="pi pi-trash"
+          type="button"
+          (click)="onDelete(project.id)"
+        ></button>
       </div>
     </div>
   </p-card>
