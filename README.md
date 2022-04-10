@@ -56,8 +56,8 @@ You can check the API documentation in `localhost:3000/api/documentation`.
 
 ## App screen
 
-![](app-screens\login.png)
+![](./app-screens/login.png)
 
-![](app-screens\project-list.png)
+![](./app-screens/project-list.png)
 
-![](app-screens\task-list.png)
+![](./app-screens/task-list.png)
