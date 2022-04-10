@@ -22,6 +22,6 @@ export class Task {
   projectId: string;
 
   @Exclude()
-  @ManyToOne(() => Project, (project) => project.tasks)
+  @ManyToOne(() => Project, (project) => project.tasks, { onDelete: 'CASCADE' })
   project: Project;
 }

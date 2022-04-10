@@ -28,6 +28,6 @@ export class Project {
   @ManyToOne(() => User, (user) => user.projects)
   user: User;
 
-  @OneToMany(() => Task, (task) => task.project, { onDelete: 'CASCADE' })
+  @OneToMany(() => Task, (task) => task.project)
   tasks: Task[];
 }
